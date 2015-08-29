@@ -8,17 +8,19 @@
     }
 
     initEvents() {
+      console.log( 'começou worker' );
       console.time( 'worker' );
       this.bigFor = new Worker( './worker.js' );
       this.bigFor.addEventListener( 'message', function( event ) {
-        console.timeEnd( 'worker' );
         console.log( event.data );
+        console.timeEnd( 'worker' );
       });
     }
 
     bigForNormal() {
+      console.log( 'começou bigFor' );
       console.time( 'bigFor' );
-      for(let i = 0; i < 10000; i++) {
+      for(let i = 0; i < 100000; i++) {
         console.log( 'calculando...' );
       }
       console.timeEnd( 'bigFor' );
